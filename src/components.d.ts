@@ -5,57 +5,215 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { AutocompleteTypes, InputModeTypes, InputTypes } from "./utils/type-utils";
 export namespace Components {
-    interface MyComponent {
+    interface UiInput {
         /**
-          * The first name
+          * Indicates whether the value of the control can be automatically completed by the browser.
          */
-        "first": string;
+        "autocomplete": AutocompleteTypes;
         /**
-          * The last name
+          * This Boolean attribute lets you specify that a form control should have input focus when the page loads.
          */
-        "last": string;
+        "autofocus": boolean;
         /**
-          * The middle name
+          * If `true`, the user cannot interact with the input
          */
-        "middle": string;
+        "disabled": boolean;
+        /**
+          * A hint to the browser for which keyboard to display.  Possible values: `"none"`, `"text"`, `"tel"`, `"url"`, `"email"`, `"numeric"`, `"decimal"`, and `"search"`.
+         */
+        "inputmode"?: InputModeTypes;
+        /**
+          * Id of the label element for this input This is used in aria-labelledby attribute
+         */
+        "labelId"?: number;
+        /**
+          * The maximum value, which must not be less than its minimum (min attribute) value.
+         */
+        "max"?: string;
+        /**
+          * If the value of the type attribute is `text`, `email`, `search`, `password`, `tel`, or `url`, this attribute specifies the maximum number of characters that the user can enter.
+         */
+        "maxlength"?: number;
+        /**
+          * The minimum value, which must not be greater than its maximum (max attribute) value.
+         */
+        "min"?: string;
+        /**
+          * If the value of the type attribute is `text`, `email`, `search`, `password`, `tel`, or `url`, this attribute specifies the minimum number of characters that the user can enter.
+         */
+        "minlength"?: number;
+        /**
+          * The name of the control, which is submitted with the form data.
+         */
+        "name"?: string;
+        /**
+          * A regular express thatEvent the value is checked against.
+         */
+        "pattern"?: string;
+        /**
+          * InstructalEvent text that shows before the input has a value.
+         */
+        "placeholder": '';
+        /**
+          * If `true`, the user cannot modify the value.
+         */
+        "readonly": boolean;
+        /**
+          * Checks for validity and shows the browser's validat messageEvent if the control is invalid.
+         */
+        "reportValidity": () => Promise<boolean>;
+        /**
+          * If `true`, the user must fill in a value before submitting a form.
+         */
+        "required": boolean;
+        /**
+          * The initial size of the control.  * This attribute applies only when the `type` attribute is set to `"text"`, `"search"`, `"tel"`, `"url"`, `"email"`, or `"password"`, otherwise it is ignored.  If the value of the type attribute is `"text"` or `"password"`, then this is an integer number of characters.  Else the value is in pixels.
+         */
+        "size"?: number;
+        /**
+          * Only valid for `"number"` input type.  Works with the min and max attributes to limit the increments at which a value can be set.  Possible values are: `"any"` or a positive floating point number.
+         */
+        "step"?: string;
+        /**
+          * The type of input
+         */
+        "type": InputTypes;
+        /**
+          * The value of the input.
+         */
+        "value"?: string | number | null;
+    }
+    interface UiTextInput {
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLUiInputElement extends Components.UiInput, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLUiInputElement: {
+        prototype: HTMLUiInputElement;
+        new (): HTMLUiInputElement;
+    };
+    interface HTMLUiTextInputElement extends Components.UiTextInput, HTMLStencilElement {
+    }
+    var HTMLUiTextInputElement: {
+        prototype: HTMLUiTextInputElement;
+        new (): HTMLUiTextInputElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "ui-input": HTMLUiInputElement;
+        "ui-text-input": HTMLUiTextInputElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface UiInput {
         /**
-          * The first name
+          * Indicates whether the value of the control can be automatically completed by the browser.
          */
-        "first"?: string;
+        "autocomplete"?: AutocompleteTypes;
         /**
-          * The last name
+          * This Boolean attribute lets you specify that a form control should have input focus when the page loads.
          */
-        "last"?: string;
+        "autofocus"?: boolean;
         /**
-          * The middle name
+          * If `true`, the user cannot interact with the input
          */
-        "middle"?: string;
+        "disabled"?: boolean;
+        /**
+          * A hint to the browser for which keyboard to display.  Possible values: `"none"`, `"text"`, `"tel"`, `"url"`, `"email"`, `"numeric"`, `"decimal"`, and `"search"`.
+         */
+        "inputmode"?: InputModeTypes;
+        /**
+          * Id of the label element for this input This is used in aria-labelledby attribute
+         */
+        "labelId"?: number;
+        /**
+          * The maximum value, which must not be less than its minimum (min attribute) value.
+         */
+        "max"?: string;
+        /**
+          * If the value of the type attribute is `text`, `email`, `search`, `password`, `tel`, or `url`, this attribute specifies the maximum number of characters that the user can enter.
+         */
+        "maxlength"?: number;
+        /**
+          * The minimum value, which must not be greater than its maximum (max attribute) value.
+         */
+        "min"?: string;
+        /**
+          * If the value of the type attribute is `text`, `email`, `search`, `password`, `tel`, or `url`, this attribute specifies the minimum number of characters that the user can enter.
+         */
+        "minlength"?: number;
+        /**
+          * The name of the control, which is submitted with the form data.
+         */
+        "name"?: string;
+        /**
+          * Emitted when the input loses focus.
+         */
+        "onBlurEvent"?: (event: CustomEvent<FocusEvent>) => void;
+        /**
+          * Emitted when the value has changed.
+         */
+        "onChangeEvent"?: (event: CustomEvent<{ value: string | undefined | null }>) => void;
+        /**
+          * Emitted when the input has focus.
+         */
+        "onFocusEvent"?: (event: CustomEvent<FocusEvent>) => void;
+        /**
+          * Emitted when a keyboard input occurred.
+         */
+        "onInputEvent"?: (event: CustomEvent<KeyboardEvent>) => void;
+        /**
+          * Emitted when a keyboard event occurs.
+         */
+        "onKeydownEvent"?: (event: CustomEvent<KeyboardEvent>) => void;
+        /**
+          * A regular express thatEvent the value is checked against.
+         */
+        "pattern"?: string;
+        /**
+          * InstructalEvent text that shows before the input has a value.
+         */
+        "placeholder"?: '';
+        /**
+          * If `true`, the user cannot modify the value.
+         */
+        "readonly"?: boolean;
+        /**
+          * If `true`, the user must fill in a value before submitting a form.
+         */
+        "required"?: boolean;
+        /**
+          * The initial size of the control.  * This attribute applies only when the `type` attribute is set to `"text"`, `"search"`, `"tel"`, `"url"`, `"email"`, or `"password"`, otherwise it is ignored.  If the value of the type attribute is `"text"` or `"password"`, then this is an integer number of characters.  Else the value is in pixels.
+         */
+        "size"?: number;
+        /**
+          * Only valid for `"number"` input type.  Works with the min and max attributes to limit the increments at which a value can be set.  Possible values are: `"any"` or a positive floating point number.
+         */
+        "step"?: string;
+        /**
+          * The type of input
+         */
+        "type"?: InputTypes;
+        /**
+          * The value of the input.
+         */
+        "value"?: string | number | null;
+    }
+    interface UiTextInput {
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "ui-input": UiInput;
+        "ui-text-input": UiTextInput;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ui-input": LocalJSX.UiInput & JSXBase.HTMLAttributes<HTMLUiInputElement>;
+            "ui-text-input": LocalJSX.UiTextInput & JSXBase.HTMLAttributes<HTMLUiTextInputElement>;
         }
     }
 }
