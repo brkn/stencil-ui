@@ -1,7 +1,8 @@
 {
   "name": "stencil-ui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Stencil Component Starter",
+  "license": "UNLICENSED",
   "main": "dist/index.cjs.js",
   "module": "dist/custom-elements/index.js",
   "es2015": "dist/esm/index.mjs",
@@ -24,5 +25,11 @@
   "dependencies": {
     "@stencil/core": "^2.0.1"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@stencil/sass": "1.4.1",
+    "@types/jest": "26.0.20",
+    "@types/puppeteer": "5.4.2",
+    "jest": "26.6.3",
+    "puppeteer": "5.5.0"
+  }
 }
